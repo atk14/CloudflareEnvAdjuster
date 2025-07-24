@@ -1,0 +1,26 @@
+{
+        "name": "atk14/cloudflare-env-adjuster",
+        "type": "library",
+        "description": "Adjust the environment of a web app behind Cloudflare protection.",
+        "keywords": [],
+        "homepage": "https://github.com/atk14/CloudflareEnvAdjuster",
+        "license": ["MIT"],
+        "authors": [
+                {
+                        "name": "Jaromir Tomek",
+                        "homepage": "https://github.com/yarri"
+                }
+        ],
+        "require": {
+                "php": ">=5.6",
+								"atk14/ip-matcher": ">=1.0"
+        },
+        "require-dev": {
+                "atk14/tester": "*",
+								"atk14/http": "*",
+								"atk14/functions": ">=1.0.4"
+        },
+        "autoload": {
+                "classmap": ["src"]
+        }
+}
