@@ -2,6 +2,10 @@
 class CloudflareEnvAdjuster {
 
 	static function AdjustEnv(){
+		if(isset($GLOBALS["_SERVER"]["_CLOUDFLARE_ENV_TUNER_PASSED"])){
+			return;
+		}
+
 		$GLOBALS["_SERVER"]["_CLOUDFLARE_ENV_TUNER_PASSED"] = "true";
 
 		if(!isset($GLOBALS["_SERVER"]["HTTP_X_FORWARDED_FOR"])){

@@ -28,6 +28,7 @@ class TcCloudflareEnvAdjuster extends TcBase {
 		$this->assertEquals("on",$_SERVER["HTTPS"]);
 		$this->assertTrue(!isset($_SERVER["HTTP_X_FORWARDED_FOR"]));
 		$this->assertTrue(!isset($_SERVER["HTTP_X_FORWARDED_PROTO"]));
+		$this->assertEquals("true",$GLOBALS["_SERVER"]["_CLOUDFLARE_ENV_TUNER_PASSED"]);
 
 		$request = new HTTPRequest();
 		$this->assertEquals("217.28.84.78",$request->getRemoteAddr());
