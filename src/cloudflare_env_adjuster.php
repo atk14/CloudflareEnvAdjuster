@@ -12,6 +12,12 @@ class CloudflareEnvAdjuster {
 			return;
 		}
 
+		$forwarded_for_addrs = explode(",",$GLOBALS["_SERVER"]["HTTP_X_FORWARDED_FOR"]);
+		$forwarded_for_addr = trim(array_pop($forwarded_for_addrs));
+		if(!$forwarded_for_addr){
+			return;
+		}
+
 		if(!isset($GLOBALS["_SERVER"]["REMOTE_ADDR"])){
 			return;
 		}
@@ -50,7 +56,7 @@ class CloudflareEnvAdjuster {
 		}
 
 		$GLOBALS["_SERVER"]["X_CF_REMOTE_ADDR"] = $remote_addr;
-		$GLOBALS["_SERVER"]["REMOTE_ADDR"] = $GLOBALS["_SERVER"]["HTTP_X_FORWARDED_FOR"];
+		$GLOBALS["_SERVER"]["REMOTE_ADDR"] = $forwarded_for_addr;
 		$GLOBALS["_SERVER"]["REQUEST_SCHEME"] = $GLOBALS["_SERVER"]["HTTP_X_FORWARDED_PROTO"]; // "http", "https"
 		if($GLOBALS["_SERVER"]["REQUEST_SCHEME"] === "https"){
 			$GLOBALS["_SERVER"]["HTTPS"] = "on";
